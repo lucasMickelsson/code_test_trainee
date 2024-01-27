@@ -1,14 +1,22 @@
 package org.example;
 
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 import java.io.*;
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Main {
+@SpringBootApplication
+public class Main implements CommandLineRunner {
     public static void main(String[] args) {
+        SpringApplication.run(Main.class, args);
+    }
+    @Override
+    public void run(String ... args) throws Exception{
         URL resource = Main.class.getClassLoader().getResource("prospects.txt");
         File file= new File(resource.getFile());
 
@@ -40,6 +48,5 @@ public class Main {
 
             System.out.println(customer.getName()+ ": " +mortageHandler.calculate_mortage());
         }
-
     }
 }
