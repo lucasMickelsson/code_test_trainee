@@ -1,8 +1,11 @@
 package org.example;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -13,18 +16,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@RestController
+@Controller
 public class CustomerController {
 
     private List<Customer> customerList;
     @GetMapping("/")
-    public String message() {
-        return"---------Hello Spring Boot App------------";
+    public String mainPage() {
+        return "index";
     }
 
     @GetMapping("/customers")
-    public List<Customer> getCustomers() {
-        return customerList;
+    public String getCustomers(Model model) {
+        model.addAttribute("customers", customerList);
+        return "customers";
     }
 
     @Bean
@@ -64,18 +68,17 @@ public class CustomerController {
             System.out.println(customer.getName() + ": " + mortgageHandler.calculate_mortage());
         }
     }
-        /*@GetMapping("/newProspect")
-        public String newProspectForm() {
-            return "newProspect";
-        }
-
-        @PostMapping("/newProspect")
-        public String newProspectSubmit(@RequestParam String name,
-                                        @RequestParam double interest,
-                                        @RequestParam double totalLoan,
-                                        @RequestParam int years) {
-            Customer newProspect = new Customer(name, interest, totalLoan, years);
-            main.customerList.add(newProspect);
-            return "redirect:/";
-        }*/
+    @GetMapping("/newCustomer")
+    public String newCustomer(Model model) {
+        model.addAttribute("customerForm", new Customer(null, 0, 0, 0));
+        return "newCustomer"; // Redirect to the customer list page
+    }
+    @PostMapping("/newCustomer")
+    public String newCustomer(@ModelAttribute Customer customer, Model model) {
+        Customer customer1 = new Customer(customer.getName(),
+                customer.getTotal_loan(), customer.getInterest(), customer.getYears());
+        model.addAttribute("customerForm", customer1);
+        customerList.add(customer1);
+        return "customers"; // Redirect to the customer list page
+    }
 }
