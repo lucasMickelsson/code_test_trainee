@@ -1,0 +1,56 @@
+<div *ngFor="let fund of funds" class="fund-item">
+    <h2>{{ fund.fundName }}</h2>
+    <ul>
+        <li><strong>Instrument ID:</strong> {{ fund.instrumentId }}</li>
+        <li><strong>ISIN:</strong> {{ fund.isin }}</li>
+        <li><strong>Fund Type:</strong> {{ fund.fundType }}</li>
+        <li><strong>Estimation Date:</strong> {{ fund.estimationDate | date }}</li>
+        <li><strong>Rate:</strong> {{ fund.rate }}</li>
+        <li><strong>Change 1Y:</strong> {{ fund.change1y }}</li>
+        <li><strong>Currency:</strong> {{ fund.currency }}</li>
+        <li><strong>Available for Monthly Saving:</strong> {{ fund.availableForMonthlySaving ? 'Yes' : 'No' }}</li>
+        <li><strong>Redemption Min Fee:</strong> {{ fund.redemptionMinFee.amount }} {{ fund.redemptionMinFee.currency }}
+        </li>
+        <li><strong>Redemption Percent:</strong> {{ fund.redemptionPercent }}</li>
+        <li><strong>Subscription Min Fee:</strong> {{ fund.subscriptionMinFee.amount }} {{
+            fund.subscriptionMinFee.currency }}</li>
+        <li><strong>Subscription Percent:</strong> {{ fund.subscriptionPercent }}</li>
+        <li><strong>Subscription Min Value:</strong> {{ fund.subscriptionMinValue.amount }} {{
+            fund.subscriptionMinValue.currency }}</li>
+        <li><strong>Investment Class:</strong> {{ fund.investmentClass }}</li>
+        <li><strong>Allowed to Buy:</strong> {{ fund.permissions.allowedToBuy ? 'Yes' : 'No' }}</li>
+        <li><strong>Allowed to Sell:</strong> {{ fund.permissions.allowedToSell ? 'Yes' : 'No' }}</li>
+        <li><strong>Allowed to Swap:</strong> {{ fund.permissions.allowedToSwap ? 'Yes' : 'No' }}</li>
+        <li><strong>Allowed for Watchlist:</strong> {{ fund.permissions.allowedForWatchlist ? 'Yes' : 'No' }}</li>
+        <li><strong>Allowed for Detailed Information:</strong> {{ fund.permissions.allowedForDetailedInformation ? 'Yes'
+            : 'No' }}</li>
+        <li><strong>Allowed to Trade:</strong> {{ fund.permissions.allowedToTrade ? 'Yes' : 'No' }}</li>
+        <li><strong>Buy Commissions:</strong> {{ fund.buyCommissions }}</li>
+        <li><strong>Sell Commissions:</strong> {{ fund.sellCommissions }}</li>
+        <li><strong>Change 1M:</strong> {{ fund.change1m }}</li>
+        <li><strong>Change 3M:</strong> {{ fund.change3m }}</li>
+        <li><strong>Change 3Y:</strong> {{ fund.change3y }}</li>
+        <li><strong>Minimum Commission:</strong> {{ fund.minimumCommission }}</li>
+        <li><strong>Technical Commission:</strong> {{ fund.technicalCommission }}</li>
+        <li><strong>Technical Commission Up:</strong> {{ fund.technicalCommissionUp }}</li>
+        <li><strong>Sell Commission:</strong> {{ fund.sellCommission }}</li>
+        <li><strong>Administrative Fee:</strong> {{ fund.administrativeFee }}</li>
+        <li><strong>Start Date:</strong> {{ fund.startDate | date }}</li>
+        <li><strong>Year High:</strong> {{ fund.yearHigh }}</li>
+        <li><strong>Year Low:</strong> {{ fund.yearLow }}</li>
+        <li><strong>Graph Image Link:</strong> {{ fund.graphImageLink }}</li>
+        <li><strong>Documents:</strong>
+            <ul>
+                <li *ngFor="let document of fund.documents">{{ document.title }}: <a href="{{ document.url }}"
+                        target="_blank">{{ document.url }}</a>
+                </li>
+            </ul>
+        </li>
+        <li><strong>Fund Company:</strong> {{ fund.fundCompany }}</li>
+        <li><strong>Start Value:</strong> {{ fund.startValue }}</li>
+        <li><strong>Close Price:</strong> {{ fund.closePrice }}</li>
+        <li><strong>Latest Close Price Date:</strong> {{ fund.latestClosePriceDate | date }}</li>
+        <li><strong>Count Decimals:</strong> {{ fund.countDecimals }}</li>
+    </ul>
+    <hr />
+</div>
